@@ -2,6 +2,7 @@
 class EventModel(object):
 	'This will represent an Event'
 
+	eventID = 0
 	eventName = ''
 	eventAvgWeight = 0.0
 	eventTotalPoints = 0
@@ -11,7 +12,8 @@ class EventModel(object):
 	eventScoreboard = ''
 	eventTeams = []
 
-	def __init__(self, name, avgWeight, totalPoints, date, type, tasks, scoreboard, teams):
+	def __init__(self, id, name, avgWeight, totalPoints, date, type, tasks, scoreboard, teams):
+		self.eventID = id
 		self.eventName = name
 		self.eventAvgWeight = avgWeight
 		self.eventTotalPoints = totalPoints
@@ -27,6 +29,9 @@ class EventModel(object):
 			if check:
 				return check
 		return 0
+
+	def setID(self, id):
+		self.eventID = id
 
 	def setName(self, name):
 		self.eventName = name
@@ -52,6 +57,9 @@ class EventModel(object):
 	def setTeams(self, teams):
 		self.eventTeams = teams
 
+	def getID(self):
+		return self.eventID
+		
 	def getName(self):
 		return self.eventName
 

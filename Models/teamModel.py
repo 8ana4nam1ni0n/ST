@@ -30,10 +30,10 @@ class TeamModel(object):
 		return cmp(self, otherTeam) != 0
 
 	def __lt__(self, otherTeam):
-		return self.teamRank < otherTeam.teamRank
+		return self.teamRank < otherTeam.getRank()
 
 	def __gt__(self, otherTeam):
-		return self.teamRank > otherTeam.teamRank
+		return self.teamRank > otherTeam.getRank()
 
 	def setID(self, id):
 		self.teamID = id
@@ -103,14 +103,14 @@ class TeamModel(object):
 	def searchMemberByName(self, memberName):
 		members = []
 		for member in self.teamMembers:
-			if member.playerName == memberName:
+			if member.getName() == memberName:
 				members.append(member)
 		return members[0] if len(members) == 1 else members
 
 	def getMemberPositionById(self, memberId):
 		pos = -1
 		for i in range(len(self.teamMembers)):
-			if memberId == self.teamMembers[i].playerID:
+			if memberId == self.teamMembers[i].getID():
 				pos = i
 				break
 		return pos
@@ -118,7 +118,7 @@ class TeamModel(object):
 	def getMemberPositionByEmail(self, memberEmail):
 		pos = -1
 		for i in range(len(self.teamMembers)):
-			if memberEmail == self.teamMembers[i].playerEmail:
+			if memberEmail == self.teamMembers[i].getEmail():
 				pos = i
 				break
 		return pos
