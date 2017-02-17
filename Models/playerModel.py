@@ -15,6 +15,25 @@ class PlayerModel(object):
 		self.playerTeam = team
 		self.playerRank = rank
 
+	def __cmp__(self, otherPlayer):
+		for curr, other in zip(self.__values(), otherPlayer.__values()):
+			check = cmp(curr, other)
+			if check:
+				return check
+		return 0
+
+	def __eq__(self, otherPlayer):
+		return cmp(self, otherPlayer) == 0
+
+	def __ne__(self, otherPlayer):
+		return cmp(self, otherPlayer) != 0
+
+	def __lt__(self, otherPlayer):
+		return self.playerRank < otherPlayer.playerRank
+
+	def __gt__(self, otherPlayer):
+		return self.playerRank > otherPlayer.playerRank
+
 	def setID(self, id):
 		self.playerID = id
 
